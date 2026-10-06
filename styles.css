@@ -1,0 +1,312 @@
+/* CotizadorPro — hoja de estilos del motor de cotizaciones.
+   Identidad: oro sobre grafito, tipografia Space Grotesk (display) + Sora. */
+
+:root {
+  --bg: #0c0c0c;
+  --panel: #141414;
+  --panel-2: #1b1b1b;
+  --line: #2a2a2a;
+  --text: #e8e8e8;
+  --muted: #8d8d8d;
+  --gold: #e8a849;
+  --gold-dim: #a9762f;
+  --ok: #6bbf73;
+  --warn: #d9a441;
+  --bad: #d66a6a;
+  --info: #5a9bd4;
+  --radius: 10px;
+  --shadow: 0 18px 40px -22px rgba(0, 0, 0, 0.9);
+}
+
+* { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: "Sora", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+  font-size: 15px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3, .display {
+  font-family: "Space Grotesk", "Sora", sans-serif;
+  letter-spacing: -0.02em;
+  margin: 0;
+}
+
+a { color: var(--gold); text-decoration: none; }
+a:hover { text-decoration: underline; }
+
+.wrap { max-width: 1180px; margin: 0 auto; padding: 0 24px; }
+
+/* --- header --------------------------------------------------------------- */
+header.top {
+  border-bottom: 1px solid var(--line);
+  background: linear-gradient(180deg, #101010, #0c0c0c);
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  backdrop-filter: blur(8px);
+}
+
+.top-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 16px 0;
+}
+
+.brand { display: flex; align-items: baseline; gap: 10px; }
+.brand .mark {
+  font-family: "Space Grotesk", sans-serif;
+  font-size: 21px;
+  font-weight: 700;
+  color: var(--gold);
+}
+.brand .tag { color: var(--muted); font-size: 13px; }
+
+nav.top a { color: var(--muted); font-size: 13.5px; margin-left: 20px; }
+nav.top a:hover { color: var(--gold); text-decoration: none; }
+
+.badge {
+  font-size: 11px;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  color: var(--gold);
+  border: 1px solid var(--gold-dim);
+  border-radius: 999px;
+  padding: 3px 10px;
+}
+
+/* --- hero ----------------------------------------------------------------- */
+.hero { padding: 64px 0 40px; }
+.hero h1 { font-size: clamp(30px, 4.4vw, 48px); line-height: 1.1; }
+.hero h1 em { font-style: normal; color: var(--gold); }
+.hero p.lead {
+  color: var(--muted);
+  max-width: 62ch;
+  margin: 18px 0 0;
+  font-size: 16.5px;
+}
+.hero .meta { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 24px; }
+
+.chip {
+  font-size: 12.5px;
+  color: var(--muted);
+  border: 1px solid var(--line);
+  background: var(--panel);
+  border-radius: 999px;
+  padding: 5px 12px;
+}
+
+/* --- layout --------------------------------------------------------------- */
+.grid { display: grid; gap: 20px; }
+.grid.two { grid-template-columns: 320px 1fr; align-items: start; }
+.grid.kpis { grid-template-columns: repeat(4, 1fr); }
+
+section { padding: 32px 0; }
+
+.panel {
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 20px;
+  box-shadow: var(--shadow);
+}
+
+.panel h2 {
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--muted);
+  margin-bottom: 16px;
+  font-family: "Sora", sans-serif;
+  font-weight: 600;
+}
+
+/* --- kpis ----------------------------------------------------------------- */
+.kpi { background: var(--panel); border: 1px solid var(--line); border-radius: var(--radius); padding: 18px; }
+.kpi .label { font-size: 12px; text-transform: uppercase; letter-spacing: 0.1em; color: var(--muted); }
+.kpi .value { font-family: "Space Grotesk", sans-serif; font-size: 26px; margin-top: 6px; }
+.kpi .value.gold { color: var(--gold); }
+.kpi .foot { font-size: 12px; color: var(--muted); margin-top: 4px; }
+
+/* --- catalogo ------------------------------------------------------------- */
+.cat { display: grid; gap: 8px; max-height: 560px; overflow-y: auto; padding-right: 4px; }
+
+.prod {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 4px 10px;
+  align-items: center;
+  background: var(--panel-2);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 10px 12px;
+  cursor: pointer;
+  transition: border-color 0.15s, background 0.15s, transform 0.08s;
+}
+.prod:hover { border-color: var(--gold-dim); background: #1f1f1f; }
+.prod:active { transform: translateY(1px); }
+.prod.selected { border-color: var(--gold); background: #201a10; }
+.prod .name { font-size: 13.5px; }
+.prod .sku { font-size: 11px; color: var(--muted); letter-spacing: 0.05em; }
+.prod .price { font-family: "Space Grotesk", sans-serif; color: var(--gold); font-size: 14px; white-space: nowrap; }
+
+/* --- controls ------------------------------------------------------------- */
+.field { display: block; margin-bottom: 14px; }
+.field span { display: block; font-size: 12px; color: var(--muted); margin-bottom: 6px; letter-spacing: 0.05em; }
+
+input, select, textarea {
+  width: 100%;
+  background: #101010;
+  border: 1px solid var(--line);
+  color: var(--text);
+  border-radius: 8px;
+  padding: 10px 12px;
+  font-family: inherit;
+  font-size: 14px;
+}
+input:focus, select:focus, textarea:focus { outline: none; border-color: var(--gold-dim); }
+
+.row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+
+button {
+  font-family: "Sora", sans-serif;
+  font-size: 13.5px;
+  font-weight: 500;
+  border-radius: 8px;
+  border: 1px solid var(--line);
+  background: var(--panel-2);
+  color: var(--text);
+  padding: 10px 14px;
+  cursor: pointer;
+  transition: border-color 0.15s, background 0.15s;
+}
+button:hover { border-color: var(--gold-dim); }
+button.primary { background: var(--gold); border-color: var(--gold); color: #14100a; font-weight: 600; }
+button.primary:hover { background: #f0b458; }
+button:disabled { opacity: 0.45; cursor: not-allowed; }
+button.link { background: none; border: none; color: var(--muted); padding: 4px 6px; font-size: 12.5px; }
+button.link:hover { color: var(--bad); }
+
+.actions { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 4px; }
+
+/* --- tabla de items ------------------------------------------------------- */
+table { width: 100%; border-collapse: collapse; font-size: 13.5px; }
+th {
+  text-align: right;
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--muted);
+  font-weight: 600;
+  padding: 8px 10px;
+  border-bottom: 1px solid var(--line);
+}
+th:first-child, td:first-child { text-align: left; }
+td { padding: 11px 10px; border-bottom: 1px solid #1e1e1e; text-align: right; font-variant-numeric: tabular-nums; }
+td.strong { font-family: "Space Grotesk", sans-serif; color: var(--gold); }
+.tag-mini {
+  font-size: 11px;
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  padding: 2px 7px;
+  color: var(--muted);
+}
+.tag-mini.bonif { color: var(--ok); border-color: #2f5c35; }
+
+.empty { color: var(--muted); font-size: 13.5px; padding: 26px 0; text-align: center; }
+
+/* --- totales -------------------------------------------------------------- */
+.totals { margin-top: 20px; border-top: 1px solid var(--line); padding-top: 16px; }
+.totals .line { display: flex; justify-content: space-between; padding: 6px 0; font-size: 14px; color: var(--muted); }
+.totals .line span:last-child { font-variant-numeric: tabular-nums; color: var(--text); }
+.totals .line.disc span:last-child { color: var(--warn); }
+.totals .line.total {
+  border-top: 1px solid var(--line);
+  margin-top: 10px;
+  padding-top: 14px;
+  font-size: 17px;
+  color: var(--text);
+  font-family: "Space Grotesk", sans-serif;
+}
+.totals .line.total span:last-child { color: var(--gold); font-size: 24px; }
+
+/* --- estados -------------------------------------------------------------- */
+.estados { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 14px; }
+.est-pill {
+  font-size: 12px;
+  padding: 5px 12px;
+  border-radius: 999px;
+  border: 1px solid var(--line);
+  color: var(--muted);
+  background: #101010;
+}
+.est-pill.borrador { color: #9a9a9a; }
+.est-pill.enviada { color: var(--info); border-color: #2f4a63; }
+.est-pill.aceptada { color: var(--ok); border-color: #2f5c35; }
+.est-pill.rechazada { color: var(--bad); border-color: #5c2f2f; }
+.est-pill.vencida { color: var(--warn); border-color: #5c4a2f; }
+
+/* --- pipeline ------------------------------------------------------------- */
+.funnel { display: grid; gap: 10px; }
+.fbar { display: grid; grid-template-columns: 92px 1fr 130px; gap: 10px; align-items: center; font-size: 13px; }
+.fbar .track { background: #1a1a1a; border-radius: 4px; height: 9px; overflow: hidden; }
+.fbar .fill { height: 100%; background: var(--gold); border-radius: 4px; transition: width 0.4s ease; }
+.fbar .amt { text-align: right; color: var(--muted); font-variant-numeric: tabular-nums; }
+.fbar .lbl { color: var(--muted); }
+
+/* --- contrato de calculo -------------------------------------------------- */
+.calc { font-size: 13.5px; }
+.calc code {
+  display: block;
+  background: #101010;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 10px 12px;
+  margin: 8px 0 0;
+  color: var(--gold);
+  font-size: 13px;
+  overflow-x: auto;
+}
+.calc li { margin-bottom: 6px; color: var(--muted); }
+
+footer {
+  border-top: 1px solid var(--line);
+  margin-top: 48px;
+  padding: 28px 0 44px;
+  color: var(--muted);
+  font-size: 13px;
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.note {
+  font-size: 12.5px;
+  color: var(--muted);
+  border-left: 2px solid var(--gold-dim);
+  padding-left: 12px;
+  margin-top: 18px;
+}
+
+/* --- responsive ----------------------------------------------------------- */
+@media (max-width: 980px) {
+  .grid.two { grid-template-columns: 1fr; }
+  .grid.kpis { grid-template-columns: repeat(2, 1fr); }
+  .cat { max-height: 320px; }
+}
+@media (max-width: 640px) {
+  .grid.kpis { grid-template-columns: 1fr; }
+  .row { grid-template-columns: 1fr; }
+  .fbar { grid-template-columns: 76px 1fr 96px; }
+  nav.top { display: none; }
+  .hero { padding: 40px 0 24px; }
+}
